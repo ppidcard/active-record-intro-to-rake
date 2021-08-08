@@ -1,14 +1,8 @@
 require_relative "../config/environment.rb"
 
 class Student
-
-  # Remember, you can access your database connection anywhere in this class
-  #  with DB[:conn]  
-  
   attr_accessor :name, :grade
-  
   attr_reader :id
-  
   def initialize(name, grade, id=nil)
     @id = id
     @name = name
@@ -36,9 +30,7 @@ class Student
       INSERT INTO students (name, grade) 
       VALUES (?, ?)
     SQL
-
     DB[:conn].execute(sql, self.name, self.grade)
-    
   end
 
   def self.create(name:, grade:)
@@ -50,5 +42,4 @@ class Student
     sql = "SELECT * FROM students" 
     DB[:conn].execute(sql)
   end
-
 end
